@@ -17,7 +17,7 @@ public enum EventSourceState {
 public class EventSource: NSObject, NSURLSessionDataDelegate {
 	static let DefaultsKey = "com.inaka.eventSource.lastEventId"
 
-    let url: NSURL
+    public var url: NSURL       // can now update this between connections
 	private let lastEventIDKey: String
     private let receivedString: NSString?
     private var onOpenCallback: (Void -> Void)?
@@ -25,6 +25,7 @@ public class EventSource: NSObject, NSURLSessionDataDelegate {
     private var onMessageCallback: ((id: String?, event: String?, data: String?) -> Void)?
     public internal(set) var readyState: EventSourceState
     public private(set) var retryTime = 3000
+    public var maxRetryTime = 100000        // can mod this if you want
     private var eventListeners = Dictionary<String, (id: String?, event: String?, data: String?) -> Void>()
     private var headers: Dictionary<String, String>
     internal var urlSession: NSURLSession?
@@ -60,7 +61,11 @@ public class EventSource: NSObject, NSURLSessionDataDelegate {
 
 //Mark: Connect
 
-    func connect() {
+    public func connect() { // need to be able to manually reconnect if the connection failed on auth
+        guard self.task?.state != .Running else {
+            print("cannot replace active connection")
+            return
+        }
         var additionalHeaders = self.headers
         if let eventID = self.lastEventID {
             additionalHeaders["Last-Event-Id"] = eventID
@@ -155,6 +160,7 @@ public class EventSource: NSObject, NSURLSessionDataDelegate {
         self.receivedDataBuffer.appendData(data)
         let eventStream = extractEventsFromBuffer()
         self.parseEventStream(eventStream)
+        retryTime = 3000
     }
 
     public func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: ((NSURLSessionResponseDisposition) -> Void)) {
@@ -179,7 +185,24 @@ public class EventSource: NSObject, NSURLSessionDataDelegate {
 			return
 		}
 
+        if let urlResponse = task.response as? NSHTTPURLResponse {
+            let status = urlResponse.statusCode
+            if let errorCallback = self.onErrorCallback where status >= 400 {
+                errorCallback(NSError(domain: NSURLErrorDomain, code: status, userInfo:nil))
+                if  status == 401 {
+                    // assume we will get a new token/url and then be asked to retry, so don't do anything for now
+                    return
+                }
+            }
+        }
+        
         if error == nil || error!.code != -999 {
+            // retry steps back automatically until the maxRetry level
+            let longer = self.retryTime * 2
+            if  longer < self.maxRetryTime {
+                self.retryTime = longer
+                print("\n**** retry now set to \(self.retryTime)")
+            }
             let nanoseconds = Double(self.retryTime) / 1000.0 * Double(NSEC_PER_SEC)
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(nanoseconds))
             dispatch_after(delayTime, dispatch_get_main_queue()) {

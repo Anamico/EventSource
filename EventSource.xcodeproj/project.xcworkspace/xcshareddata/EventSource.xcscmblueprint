@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A0B11C8A34C12D7B9733761D5A5D3F9804CA5CD1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A0B11C8A34C12D7B9733761D5A5D3F9804CA5CD1" : 9223372036854775807,
+    "1580CB1C794CFB34EF556DD79EE7BA7ABEF3EF80" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "53165786-13C0-4F05-9D14-63131523CDD9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A0B11C8A34C12D7B9733761D5A5D3F9804CA5CD1" : "EventSource\/",
+    "1580CB1C794CFB34EF556DD79EE7BA7ABEF3EF80" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EventSource",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EventSource.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/andrew.longhorn@stash.atmail.com\/scm\/mob\/mobileios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1580CB1C794CFB34EF556DD79EE7BA7ABEF3EF80"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Anamico\/EventSource.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A0B11C8A34C12D7B9733761D5A5D3F9804CA5CD1"
+    }
+  ]
+}

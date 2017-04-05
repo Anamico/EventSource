@@ -3,7 +3,7 @@
 ## EventSource
 SSE Client written on Swift using NSURLSession.
 
-[![Build Status](https://api.travis-ci.org/inaka/EventSource.svg)](https://travis-ci.org/inaka/EventSource) [![codecov.io](https://codecov.io/github/inaka/EventSource/badge.svg?branch=master)](https://codecov.io/github/inaka/EventSource?branch=master) [![codecov.io](https://img.shields.io/badge/pod-v1.1.3-brightgreen.svg)](https://github.com/inaka/EventSource/blob/master/IKEventSource.podspec)
+[![Build Status](https://api.travis-ci.org/inaka/EventSource.svg)](https://travis-ci.org/inaka/EventSource) [![codecov.io](https://codecov.io/github/inaka/EventSource/badge.svg?branch=master)](https://codecov.io/github/inaka/EventSource?branch=master) [![codecov.io](https://img.shields.io/badge/pod-v1.1.4-brightgreen.svg)](https://github.com/inaka/EventSource/blob/master/IKEventSource.podspec)
 
 ### Abstract
 
@@ -183,9 +183,11 @@ Thanks to all the contributors for pointing out missing stuff or problems and fi
 - [hleinone](https://github.com/hleinone)
 - [chrux](https://github.com/chrux)
 - [danielsht86](https://github.com/danielsht86)
+- [Zeeker](https://github.com/Zeeker)
 - [col](https://github.com/col)
 - [heyzooi](https://github.com/heyzooi)
 - [alexpalman](https://github.com/alexpalman)
+- [robbiet480](https://github.com/robbiet480)
 
 ### Contact Us
 For **questions** or **general comments** regarding the use of this library, please use our public
